@@ -1,0 +1,31 @@
+const fs = require('fs');
+const path = require('path');
+
+function createUdaipurArchitectureFile(sizeLimit) {
+  const content = `Architecture of Udaipur
+
+Udaipur, known as the City of Lakes, is celebrated for its stunning Rajput architecture and royal elegance. The City Palace is one of the finest examples, with marble courtyards, balconies, towers, and beautifully carved windows overlooking Lake Pichola. The Lake Palace reflects the grandeur of the city with its white marble façade, domes, and serene water-facing chambers.
+
+The Sajjangarh Palace, also called the Monsoon Palace, sits on a hill and offers panoramic views of the city while showcasing hilltop royal architecture. Traditional havelis, temples, and narrow stone streets add to Udaipur's historic charm. The architecture of Udaipur blends beauty, craftsmanship, and harmony with nature, making it one of the most beautiful architectural destinations in Rajasthan.
+`;
+
+  const filePath = path.join(__dirname, 'udaipur_architecture.txt');
+  fs.writeFileSync(filePath, content, 'utf8');
+
+  const fileSize = fs.statSync(filePath).size;
+
+  if (sizeLimit !== undefined) {
+    if (fileSize > sizeLimit) {
+      console.log(`File created successfully at ${filePath}`);
+      console.log(`File size ${fileSize} bytes is greater than the passed limit ${sizeLimit} bytes.`);
+    } else {
+      console.log(`File created successfully at ${filePath}`);
+      console.log(`File size ${fileSize} bytes is within the passed limit ${sizeLimit} bytes.`);
+    }
+  } else {
+    console.log(`File created successfully at ${filePath}`);
+    console.log(`File size is ${fileSize} bytes.`);
+  }
+}
+
+createUdaipurArchitectureFile(300);
